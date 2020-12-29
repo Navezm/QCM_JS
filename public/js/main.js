@@ -1,0 +1,1 @@
+let question = ["Comment lire le jour du mois dans une date ?", "Que fait tableau.push(3) ?", "Que signifie NaN ?"];
