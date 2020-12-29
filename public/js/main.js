@@ -8,7 +8,7 @@ let question = ["Comment lire le jour du mois dans une date ?",
 "De quelle façon déclare-t-on un tableau T1 de 20 éléments ?", 
 "parseInt('101 dalmatiens'); renvoie :", 
 "Qu'est-ce que JSON par rapport au JavaScript ?", 
-"window.confirm() affichge une boite de dialogue avec :", 
+"window.confirm() affiche une boite de dialogue avec :", 
 "Que contient document.images[1] ?",
 "Si ch1 = 'ABCED', que retourne ch1.chartAt(3)",
 "Quel est l'inverse de la fonction split()",
@@ -190,7 +190,8 @@ btnSend.addEventListener("click", function(){
                 label[i].style.color = "black";
                 inputArray[i].checked = false;
             };
-            phraseReponse.innerHTML = "";
+            phraseReponse.innerHTML = "Tu peux relancer";
+            phraseReponse.style.color = "black";
         };
     };
 });
