@@ -26,7 +26,7 @@ let reponse1 = ["getDate()",
 "Not at NULL", 
 "i >= 1", 
 "ABCDE", 
-"Switch()", 
+"switch()", 
 "var T1 = array(20)", 
 "18", 
 "un langage de requêtes", 
@@ -102,22 +102,18 @@ let reponse4 = ["Date.parse()",
 "-3",
 "est un langage dérivé de l’ADA",
 "document.getElementById(“MonId”);",
-"SetTimer()",
+"setTimer()",
 "instance"];
 
 let response = [1, 2, 4, 3, 3, 1, 3, 3, 2, 3, 2, 2, 3, 3, 2, 3, 3, 4, 2, 1];
 
 // Déclaration des éléments
-let input1 = document.getElementById("check1");
-let input2 = document.getElementById("check2");
-let input3 = document.getElementById("check3");
-let input4 = document.getElementById("check4");
 let inputArray = document.getElementsByTagName("input");
-
 let label = document.getElementsByTagName("label");
-let phraseQuestion = document.querySelector("p");
 
+let phraseQuestion = document.querySelector("p");
 let nbQuestion = document.getElementById("question1");
+
 let nbPoint = document.getElementById("score1");
 let nbPointQuestion = document.getElementById("score2");
 
@@ -129,27 +125,76 @@ let compt = 0;
 
 // Event
 btnSend.addEventListener("click", function(){
-    if(btnSend.innerHTML == "Envoyer"){
-        btnSend.innerHTML = "Suivant";
-        for (let i = 0; i < inputArray.length; i++) {
-            if(inputArray[i].checked){
-                if(inputArray[i].value == response[compt]){
-                    label[i].style.color = "green";
-                    nbPoint.innerHTML = Number(nbPoint.innerHTML) + 1;
-                    phraseReponse.innerHTML = "Bonne réponse";
-                    phraseReponse.style.color = "green";
-                } else {
-                    inputArray[i].style.color = "red";
-                    label[response[compt]].style.color = "green";
+    if(Number(nbQuestion.innerHTML) < 20){
+        if(btnSend.innerHTML == "Envoyer"){
+            btnSend.innerHTML = "Suivant";
+            for (let i = 0; i < inputArray.length; i++) {
+                if(inputArray[i].checked){
+                    if(inputArray[i].value == response[compt]){
+                        label[i].style.color = "green";
+                        nbPoint.innerHTML = Number(nbPoint.innerHTML) + 1;
+                        phraseReponse.innerHTML = "Bonne réponse";
+                        phraseReponse.style.color = "green";
+                    } else {
+                        if(inputArray[i].checked){
+                            label[i].style.color = "red";
+                            label[(response[compt] - 1)].style.color = "green";
+                        };
+                        nbPoint.innerHTML = Number(nbPoint.innerHTML) + 0;
+                        phraseReponse.innerHTML = "Mauvaise réponse";
+                        phraseReponse.style.color = "red";
+                    };
+                    nbPointQuestion.innerHTML = Number(nbPointQuestion.innerHTML) + 1;
                 };
-                nbPointQuestion.innerHTML = Number(nbPointQuestion.innerHTML) + 1;
-            } else {
-                // Mauvaise réponse
-            }
+            };
+        } else {
+            btnSend.innerHTML = "Envoyer";
+            for (let i = 0; i < label.length; i++) {
+                label[i].style.color = "black";
+                inputArray[i].checked = false;
+            };
+            phraseReponse.innerHTML = "";
+            compt ++;
+            phraseQuestion.innerHTML = question[compt];
+            label[0].innerHTML = reponse1[compt];
+            label[1].innerHTML = reponse2[compt];
+            label[2].innerHTML = reponse3[compt];
+            label[3].innerHTML = reponse4[compt];
+            nbQuestion.innerHTML = Number(nbQuestion.innerHTML) + 1;
         };
     } else {
-        btnSend.innerHTML = "Envoyer";
-        phraseReponse.innerHTML = "";
-        // compt ++;
+        if(btnSend.innerHTML == "Envoyer"){
+            btnSend.innerHTML = "Suivant";
+            for (let i = 0; i < inputArray.length; i++) {
+                if(inputArray[i].checked){
+                    if(inputArray[i].value == response[compt]){
+                        label[i].style.color = "green";
+                        nbPoint.innerHTML = Number(nbPoint.innerHTML) + 1;
+                        phraseReponse.innerHTML = "Bonne réponse";
+                        phraseReponse.style.color = "green";
+                    } else {
+                        if(inputArray[i].checked){
+                            label[i].style.color = "red";
+                            label[(response[compt] - 1)].style.color = "green";
+                        };
+                        nbPoint.innerHTML = Number(nbPoint.innerHTML) + 0;
+                        phraseReponse.innerHTML = "Mauvaise réponse";
+                        phraseReponse.style.color = "red";
+                    };
+                    nbPointQuestion.innerHTML = Number(nbPointQuestion.innerHTML) + 1;
+                };
+            };
+        } else {
+            btnSend.innerHTML = "Envoyer";
+            for (let i = 0; i < label.length; i++) {
+                label[i].style.color = "black";
+                inputArray[i].checked = false;
+            };
+            phraseReponse.innerHTML = "";
+        };
     };
+});
+
+btnRestart.addEventListener("click", function(){
+    document.location.reload();
 });
